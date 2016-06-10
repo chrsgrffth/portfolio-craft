@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+  <meta charset="utf-8" />
+  <title>{% if title is defined %}{{ title }} - {% endif %}{{ siteName }}</title>
+  <link rel="home" href="{{ siteUrl }}" />
+
+  <link rel="stylesheet" href="css/main.css">
+  {% includeCssFile "css/main.css" %}
+</head>
+
+<body>
+  <div id="masthead" class="fixed-top-left wp-100 hp-40 cbgg-8 zn-1"></div>
+
+  <header id="global-header" class="fixed-top-left wp-100 py-4 px-2">
+    <div class="container">
+      <nav>
+        <div class="col-8">
+          <a class="d-block display tn-2 cg-black">Christian Griffith</a>
+        </div>
+        <div class="col-2">
+          <p class="display tn-3 cg-5 mb-1 mtn-1">01</p>
+          <a href="#" class="d-block display caps tn-3 cg-4">Work</a>
+        </div>
+        <div class="col-2">
+          <p class="display tn-3 cg-5 mb-1 mtn-1">02</p>
+          <a href="#" class="d-block display tn-3 cg-4">Github</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <div id="container">
+    <main id="content" role="main">
+      {% block content %}
+        <p>If you see me, you haven’t set your <code>{% verbatim %}{% block content %}…{% endblock %}{% endverbatim %}</code> yet.</p>
+        <p>See Twig’s <a href="http://twig.sensiolabs.org/doc/templates.html#template-inheritance">Template Inheritance</a> documentation for an explanation.</p>
+      {% endblock %}
+    </main>
+  </div>
+
+  {% includeJsFile 'js/main.js' %}
+  {% includeJs "require('source/coffee/initialize');" %}
+
+</body>
+</html>

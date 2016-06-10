@@ -1,0 +1,18 @@
+@import 'settings';
+
+// Decent.
+// https://www.npmjs.com/package/decent-scss
+@import '../../node_modules/decent-scss/modules/color';
+@import '../../node_modules/decent-scss/modules/display';
+@import '../../node_modules/decent-scss/modules/flex';
+@import '../../node_modules/decent-scss/modules/grid';
+@import '../../node_modules/decent-scss/modules/position';
+@import '../../node_modules/decent-scss/modules/reset';
+@import '../../node_modules/decent-scss/modules/spacing';
+@import '../../node_modules/decent-scss/modules/style';
+@import '../../node_modules/decent-scss/modules/type';
+@import '../../node_modules/decent-scss/modules/widths';
+
+// Globals.
+@import 'global/base';
+@import 'global/wysiwyg';
