@@ -5,8 +5,7 @@
   <title>{% if title is defined %}{{ title }} - {% endif %}{{ siteName }}</title>
   <link rel="home" href="{{ siteUrl }}" />
 
-  <link rel="stylesheet" href="css/main.css">
-  {% includeCssFile "css/main.css" %}
+  {% includeCssFile "/css/main.css" %}
 </head>
 
 <body>
@@ -14,17 +13,22 @@
 
   <header id="global-header" class="fixed-top-left wp-100 py-4 px-2">
     <div class="container">
-      <nav>
+      <nav class="flex flex-start">
         <div class="col-8">
-          <a class="d-block display tn-2 cg-black">Christian Griffith</a>
+          <a href="/" class="d-block display caps tn-2 c-black">Christian Griffith</a>
         </div>
-        <div class="col-2">
-          <p class="display tn-3 cg-5 mb-1 mtn-1">01</p>
-          <a href="#" class="d-block display caps tn-3 cg-4">Work</a>
+        <div class="col-2 relative">
+          <!-- <div class="wp-10 absolute mtn-2"><div class="wp-40 bt-5"></div></div> -->
+          <a href="/work" class="d-block display caps tn-3 cg-4 mb-1">Work</a>
+          <a href="/journal" class="d-block display caps tn-3 cg-4 mb-1">Journal</a>
+          <a href="/contact" class="d-block display caps tn-3 cg-4">Contact</a>
         </div>
-        <div class="col-2">
-          <p class="display tn-3 cg-5 mb-1 mtn-1">02</p>
-          <a href="#" class="d-block display tn-3 cg-4">Github</a>
+        <div class="col-2 relative">
+          <!-- <div class="wp-10 absolute mtn-2"><div class="wp-40 bt-5"></div></div> -->
+
+          {% for network in siteGlobals.networks %}
+            <a href="{{ network.link }}" class="d-block display caps tn-3 cg-4 mb-1">{{ network.name }}</a>
+          {% endfor %}
         </div>
       </nav>
     </div>
@@ -39,7 +43,7 @@
     </main>
   </div>
 
-  {% includeJsFile 'js/main.js' %}
+  {% includeJsFile '/js/main.js' %}
   {% includeJs "require('source/coffee/initialize');" %}
 
 </body>

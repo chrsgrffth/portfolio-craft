@@ -4,3 +4,8 @@ html {
 
   height: 100%;
 }
+
+p,
+a {
+  @extend .antialiased;
+}

@@ -1,6 +1,6 @@
 module.exports =
   paths:
-    watched: ['source']
+    watched: ['source', 'craft/templates']
 
   files:
     javascripts:
