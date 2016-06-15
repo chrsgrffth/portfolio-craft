@@ -8,4 +8,6 @@ html {
 p,
 a {
   @extend .antialiased;
+
+  letter-spacing: 0.035em;
 }

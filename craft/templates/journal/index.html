@@ -2,18 +2,18 @@
 
 {% block content %}
 
-<section class="pt-7 pb-5">
+  <section class="pt-7 pb-5">
     <div class="container">
 
       {% for entry in craft.entries.section('journal').limit(10) %}
         <article class="row mb-5">
           <a href="{{ entry.url }}" title="{{ entry.title }}" class="d-block">
             <div class="col-md-7 push-md-2 pr-4">
-              <p class="caps display tn-3 cg-4 pl-1 mb-2">{{ entry.postDate | date("d M Y") }}</p>
-              <h1 class="caps display mb-2 c-black">{{ entry.title }}</h1>
-              <p class="tn-1 cg-2 mb-2">{{ entry.teaser }}</p>
+              <p class="d-inline-block caps display tn-3 cg-4 ml-1 pb-1 pr-2 mb-2">{{ entry.postDate | date("d M Y") }}</p>
+              <h1 class="caps display mb-1 c-black">{{ entry.title }}</h1>
+              <p class="tn-1 cg-2 mb-2 pr-5">{{ entry.teaser }}</p>
 
-              <a href="{{ entry.url }}" class="caps display tn-3 c-black pl-1">Read More</a>
+              <a href="{{ entry.url }}" class="caps display tn-3 c-black ml-1 bb-1">Read More</a>
             </div>
           </a>
         </article>
