@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+  <meta charset="utf-8" />
+  <title>{% if title is defined %}{{ title }} - {% endif %}{{ siteName }}</title>
+  <link rel="home" href="{{ siteUrl }}" />
+
+  {% includeCssFile "/css/main.css" %}
+</head>
+
+<body>
+
+  <div id="smoothstate" class="hp-100">
+    <header id="global-header" class="py-4 px-2">
+      <div class="container">
+        <nav class="flex flex-start">
+          <div class="col-8">
+            <a href="{{ siteUrl }}" class="d-block display caps tn-2 c-black">Christian Griffith</a>
+          </div>
+          <div class="col-2 relative">
+            <a href="/work" class="d-block display caps tn-3 cg-4 mb-1">Work</a>
+            <a href="journal" class="d-block display caps tn-3 cg-4 mb-1">Journal</a>
+            <a href="/about" class="d-block display caps tn-3 cg-4 mb-1">About</a>
+            <a href="/contact" class="d-block display caps tn-3 cg-4">Contact</a>
+          </div>
+          <div class="col-2 relative">
+            <!-- <div class="wp-10 absolute mtn-2"><div class="wp-40 bt-5"></div></div> -->
+
+            {% for network in siteGlobals.networks %}
+              <a href="{{ network.link }}" class="d-block display caps tn-3 cg-4 mb-1">{{ network.name }}</a>
+            {% endfor %}
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    {% block content %}
+      <p>If you see me, you haven’t set your <code>{% verbatim %}{% block content %}…{% endblock %}{% endverbatim %}</code> yet.</p>
+      <p>See Twig’s <a href="http://twig.sensiolabs.org/doc/templates.html#template-inheritance">Template Inheritance</a> documentation for an explanation.</p>
+    {% endblock %}
+
+  </div>
+
+  {% includeJsFile '/js/main.js' %}
+  {% includeJs "require('source/coffee/initialize');" %}
+
+</body>
+</html>

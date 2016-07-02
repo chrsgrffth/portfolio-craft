@@ -1,5 +1,5 @@
 {
-  "name": "Christian Griffith",
+  "name": "christian-griffith",
   "author": "Christian Griffith",
   "version": "0.1.0",
   "repository": {
@@ -13,11 +13,12 @@
   "dependencies": {
     "auto-reload-brunch": "^2.7.1",
     "coffee-script-brunch": "^2.0.0",
-    "decent-scss": "^0.3.0",
+    "decent-scss": "^0.12.0",
     "gsap": "^1.18.5",
-    "jquery": "^3.0.0",
+    "jquery": "^2.2.4",
     "sass-brunch": "^2.6.3",
     "scrollmagic": "^2.0.5",
+    "smoothstate": "^0.7.2",
     "vue": "^1.0.24"
   },
   "devDependencies": {

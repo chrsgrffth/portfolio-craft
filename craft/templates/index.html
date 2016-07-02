@@ -1,8 +1,8 @@
-{% extends "layouts/default" %}
+{% extends "_layouts/default" %}
 
 {% block content %}
 
-	<section class="pt-7 pb-5">
+	<main class="pt-5 pb-5">
     <div class="container">
 
       {% for block in entry.pageBuilder %}
@@ -21,30 +21,22 @@
       {% endfor %}
 
     </div>
-  </section>
+  </main>
 
-  <article class="panel-link relative py-4 bt-8" style="overflow: hidden;">
-    <a href="#" class="d-block">
+  <article class="panel-link relative py-4 bt-8">
+    <a href="/work" class="d-block">
     <div class="container">
       <div class="col-10 push-1 push-md-2" style="backface-visibility: hidden;">
-        <p class="display tn-3 cg-4 mb-3">01</p>
-        <h1 class="display caps mb-1">Spera</h1>
-        <h2 class="display caps tn-3 cg-3">Mobile Application Design</h2>
+        <p class="display tn-3 c-black a-2 mb-3">01</p>
+        <h1 class="display caps c-black mb-1">Spera</h1>
+        <h2 class="display caps tn-3 c-black a-3">Mobile Application Design</h2>
       </div>
     </div>
     </a>
-    <div class='panel-cover absolute-top-left wp-100 hp-100 y-100 cbg-black zn-1'></div>
+    <div class="panel-cover absolute-top-left wp-100 hp-100 zn-1" style="overflow: hidden;">
+      <div class="wp-100 hp-100 y-100" style="background-color: #47C2EE;"></div>
+    </div>
   </article>
 
-
 {% endblock %}
-
-
-
-{# 	<h2>Recent News</h2>
-	<ul>
-		{% for entry in craft.entries.section('news').limit(5).find() %}
-			<li><a href="{{ entry.url }}">{{ entry.title }}</a></li>
-		{% endfor %}
-	</ul> #}
 

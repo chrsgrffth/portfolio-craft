@@ -9,6 +9,10 @@ module.exports =
       sourceFiles: ['init.scss']
       joinTo: 'css/main.css'
 
+  npm:
+    globals:
+      jQuery: 'jquery'
+
   plugins:
     postcss:
       processors: [
