@@ -1,5 +1,5 @@
 // Rem base.
-$rem-base: 24px;
+$rem-base: 18px;
 
 // Modular scale ration.
 $ratio: 1.32;
@@ -30,6 +30,7 @@ $white: #fefefe;
 $debug-color-primary: rgba(255, 9, 206, 0.5);
 
 // Font weights.
+$fw-light: 200;
 $fw-book: 300;
 $fw-medium: 400;
 $fw-semibold: 500;
@@ -38,10 +39,10 @@ $fw-bold: 600;
 // Defaults.
 
 // Typography.
-// $default-type-family: 'Bodoni 72', 'Georgia', serif;
-$default-type-family: 'Halant', 'Georgia', serif;
+$default-type-family: 'Simplon Norm Trial', 'Arial', serif;
 $default-type-color: #313233;
 $default-line-height: 1.7;
+$defaul-type-weight: 200;
 
 $display-type-family: 'Simplon Norm', sans-serif;
 $display-type-transform: uppercase;

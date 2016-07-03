@@ -2,15 +2,15 @@
 
 {% block content %}
 
-	<main class="pt-5 pb-5">
+	<main class="pt-5 pb-6">
     <div class="container">
 
       {% for block in entry.pageBuilder %}
 
         {% if block.type == "qaBlock" %}
           <div class="row mb-3 mb-md-4">
-            <div class="col-10 col-md-6 push-1 push-md-2">
-              <h2 class="display caps tn-3 cg-5 mb-2 antialiased">{{ block.question }}</h2>
+            <div class="col-10 col-md-6 push-2">
+              <h2 class="display caps tn-2 cg-5 mb-2 antialiased">{{ block.question }}</h2>
               <div class="wysiwyg">
                 {{ block.response }}
               </div>
@@ -20,16 +20,23 @@
 
       {% endfor %}
 
+      <div class="row">
+        <div class="col-10 col-md-6 push-2">
+          <a href="/about" class="caps display tn-2 c-black bb-1">More About Me</a>
+        </div>
+      </div>
+
+
     </div>
   </main>
 
-  <article class="panel-link relative py-4 bt-8">
+  <article class="panel-link relative pt-4 pb-5 bt-8">
     <a href="/work" class="d-block">
     <div class="container">
       <div class="col-10 push-1 push-md-2" style="backface-visibility: hidden;">
-        <p class="display tn-3 c-black a-2 mb-3">01</p>
-        <h1 class="display caps c-black mb-1">Spera</h1>
-        <h2 class="display caps tn-3 c-black a-3">Mobile Application Design</h2>
+        <p class="display tn-2 c-black a-2 mb-3">01</p>
+        <h1 class="display t-1 caps c-black mb-1">Spera</h1>
+        <h2 class="display caps tn-2 c-black a-3">Mobile Application Design</h2>
       </div>
     </div>
     </a>

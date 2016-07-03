@@ -5,32 +5,36 @@
   <title>{% if title is defined %}{{ title }} - {% endif %}{{ siteName }}</title>
   <link rel="home" href="{{ siteUrl }}" />
 
+  {% hook 'seomaticRender' %}
+
   {% includeCssFile "/css/main.css" %}
 </head>
 
 <body>
 
   <div id="smoothstate" class="hp-100">
-    <header id="global-header" class="py-4 px-2">
+    <header id="global-header" class="p-1">
+      <div class="pt-4 pb-5 px-1">
       <div class="container">
         <nav class="flex flex-start">
           <div class="col-8">
-            <a href="{{ siteUrl }}" class="d-block display caps tn-2 c-black">Christian Griffith</a>
+            <a href="{{ siteUrl }}" class="d-block display caps tn-1 c-black">Christian Griffith</a>
           </div>
           <div class="col-2 relative">
-            <a href="/work" class="d-block display caps tn-3 cg-4 mb-1">Work</a>
-            <a href="journal" class="d-block display caps tn-3 cg-4 mb-1">Journal</a>
-            <a href="/about" class="d-block display caps tn-3 cg-4 mb-1">About</a>
-            <a href="/contact" class="d-block display caps tn-3 cg-4">Contact</a>
+            <p class="absolute-top-left mtn-3 display tn-3 cg-5">—</p>
+            <a href="/work" class="d-block display caps tn-2 cg-4 mb-1">Work</a>
+            <a href="journal" class="d-block display caps tn-2 cg-4 mb-1">Journal</a>
+            <a href="/about" class="d-block display caps tn-2 cg-4 mb-1">About</a>
+            <a href="/contact" class="d-block display caps tn-2 cg-4">Contact</a>
           </div>
           <div class="col-2 relative">
-            <!-- <div class="wp-10 absolute mtn-2"><div class="wp-40 bt-5"></div></div> -->
-
+            <p class="absolute-top-left mtn-3 display tn-3 cg-5">—</p>
             {% for network in siteGlobals.networks %}
-              <a href="{{ network.link }}" class="d-block display caps tn-3 cg-4 mb-1">{{ network.name }}</a>
+              <a href="{{ network.link }}" class="d-block display caps tn-2 cg-4 mb-1">{{ network.name }}</a>
             {% endfor %}
           </div>
         </nav>
+      </div>
       </div>
     </header>
 
