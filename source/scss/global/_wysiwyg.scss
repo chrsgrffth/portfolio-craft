@@ -1,6 +1,7 @@
 .wysiwyg p {
   @extend .mb-2;
   @extend .antialiased;
+  @extend .c-black;
 
   a { 
     // @extend .bb-3;
