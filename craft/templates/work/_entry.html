@@ -1,0 +1,54 @@
+{% extends "_layouts/default" %}
+
+{% block content %}
+
+  <article class="pt-5 pb-5">
+    <section class="container mb-6">
+      <div class="row">
+        <div class="col-md-6 push-md-2">
+          <h1 class="caps display mb-2 c-black t-2">{{ entry.title }}</h1>
+        </div>
+      </div>
+      <div class="flex items-baseline">
+        <div class="col-md-2">
+          <p class="caps tn-2 cg-4 pl-1 pb-1 mb-2">Overview</p>
+        </div>
+        <div class="col-md-6 tn-1 cg-1">
+          {{ entry.teaser }}
+        </div>
+      </div>
+    </section>
+
+    {% for block in entry.worksBuilder %}
+
+      {% if block.type == "fullWidthMockup" %}
+        <section class="py-5" style="background-color: {{ block.bgColor }};">
+          <div class="container">
+            <img src="/{{ block.mockup[0].getUrl() }}" class="wp-100 shadow" />
+          </div>
+        </section>
+      {% endif %}
+
+    {% endfor %}
+
+
+    <section class="container pt-5">
+      <div class="col-md-2">
+        <span class="caps tn-2 mr-2 cg-4">Share</span>
+      </div>
+      <div class="col-md-6">
+        <a href="#" class="caps tn-2 mr-1 c-black">Facebook</a>
+        <a href="#" class="caps tn-2 mr-1 c-black">Twitter</a>
+        <a href="#" class="caps tn-2 mr-1 c-black">LinkedIn</a>
+      </div>
+    </section>
+  </article>
+
+  {% set params = craft.entries.section('works') %}
+  {% set linkTo = entry.getNext(params) %}
+  
+  {% if linkTo %}
+    {% include '_shared/footerLink' %}
+  {% endif %}
+
+{% endblock %}

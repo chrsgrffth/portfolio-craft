@@ -26,24 +26,11 @@
         </div>
       </div>
 
-
     </div>
   </main>
 
-  <article class="panel-link relative pt-4 pb-5 bt-8">
-    <a href="/work" class="d-block">
-    <div class="container">
-      <div class="col-10 push-1 push-md-2" style="backface-visibility: hidden;">
-        <p class="display tn-2 c-black a-2 mb-3">01</p>
-        <h1 class="display t-1 caps c-black mb-1">Spera</h1>
-        <h2 class="display caps tn-2 c-black a-3">Mobile Application Design</h2>
-      </div>
-    </div>
-    </a>
-    <div class="panel-cover absolute-top-left wp-100 hp-100 zn-1" style="overflow: hidden;">
-      <div class="wp-100 hp-100 y-100" style="background-color: #47C2EE;"></div>
-    </div>
-  </article>
+  {% set linkTo = craft.entries.section('works').first() %}
+  {% include '_shared/footerLink' %}
 
 {% endblock %}
 

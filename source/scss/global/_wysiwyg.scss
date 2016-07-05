@@ -4,41 +4,8 @@
   @extend .c-black;
 
   a { 
-    // @extend .bb-3;
-    @extend .cg-1;
-    line-height: 1;
-    display: inline-block;
-    position: relative;
-    height: 100%;
-
-    transition: color 0.09s ease-in;
-
-    &::after {
-      @extend .cbg-black;
-
-      content: '';
-      display: block;
-      height: 1px;
-      width: 100%;
-      padding: 0 0.1rem;
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      z-index: -1;
-      transform: translate3d(-50%,0,0);
-      transition: height 0.09s ease-in,
-                  transform 0.09s ease-in;
-    }
-
-    &:hover {
-      @extend .antialiased;
-      @extend .c-white;
-
-      &::after {
-        height: 130%;
-        transform: translate3d(-50%,5px,0);
-      }
-    }
+    @extend .cg-2;
+    @extend .underline;
   }
 
   u {
