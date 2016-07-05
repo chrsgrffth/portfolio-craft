@@ -11,3 +11,9 @@ a {
 
   letter-spacing: 0.035em;
 }
+
+a[class*='bb'] {
+  transition: line-height 0.09s cubic-bezier(.17,.67,.72,1.12);
+
+  &:hover { line-height: 2; }
+}
