@@ -38,5 +38,12 @@ scrolling = require('./modules/scrolling')
   #   onAfter: ($main, $newContent) ->
   #     scrolling.init()
 
+  if $('#reading-indicator').length > 0
+    length = $(document).height()-$(window).height()
+
+    $(window).on 'scroll', ->
+
+      $('#reading-indicator span').text (($(this).scrollTop()/length)*100).toFixed(0)
+
 
 ) jQuery

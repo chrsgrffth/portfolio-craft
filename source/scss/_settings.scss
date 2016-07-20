@@ -49,6 +49,8 @@ $display-type-transform: uppercase;
 $display-letter-spacing: 0.1em;
 
 
+$length-increments: 0.6 1.6 2.6 4.2 6.8 11 18 29 46 75 !default;
+
 // Borders.
 $default-border-radius: 2px;
 $default-border-weight: 1px;

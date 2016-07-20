@@ -31827,13 +31827,13 @@ transition = require('./modules/transition');
 scrolling = require('./modules/scrolling');
 
 (function($) {
-  var $main;
+  var $main, length;
   app.init();
   $main = $('#smoothstate');
   $.ajaxPrefilter(function(options, originalOptions, jqXHR) {
     return options.async = true;
   });
-  return smoothstate = $main.smoothState({
+  smoothstate = $main.smoothState({
     debug: true,
     loadingClass: 'is-loading',
     blacklist: '.blacklist',
@@ -31845,6 +31845,12 @@ scrolling = require('./modules/scrolling');
       }
     }
   });
+  if ($('#reading-indicator').length > 0) {
+    length = $(document).height() - $(window).height();
+    return $(window).on('scroll', function() {
+      return $('#reading-indicator span').text((($(this).scrollTop() / length) * 100).toFixed(0));
+    });
+  }
 })(jQuery);
 });
 
