@@ -1,8 +1,12 @@
-{% set prevSibsCount = craft.entries.positionedBefore(entry).total() %}
-{% set position = prevSibsCount + 1 %}
+{% if entry.section.handle == 'works' %}
+  {% set prevSibsCount = craft.entries.positionedBefore(entry).total() %}
+  {% set position = prevSibsCount + 1 %}
+{% else %}
+  {% set position = 0 %}
+{% endif %}
 
 <article class="panel-link relative bt-8">
-  <a href="{{ linkTo.url }}" class="d-block pt-4 pb-5">
+  <a href="{{ linkTo.uri }}" class="d-block pt-4 pb-5">
     <div class="container">
       <div class="col-10 push-1 push-md-2" style="backface-visibility: hidden;">
         <p class="display tn-2 c-black a-2 mb-3">0{{ position }}</p>
