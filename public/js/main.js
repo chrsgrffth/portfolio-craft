@@ -31838,19 +31838,32 @@ scrolling = require('./modules/scrolling');
     loadingClass: 'is-loading',
     blacklist: '.blacklist',
     scroll: false,
+    onStart: {
+      duration: 500,
+      render: function() {
+        return transition.page('leftOut', 500);
+      }
+    },
     onReady: {
-      duration: 0,
+      duration: 500,
       render: function($main, $newContent) {
-        return $main.html($newContent);
+        $main.html($newContent);
+        return transition.page('leftIn', 500);
       }
     }
   });
   if ($('#reading-indicator').length > 0) {
     length = $(document).height() - $(window).height();
-    return $(window).on('scroll', function() {
+    $(window).on('scroll', function() {
       return $('#reading-indicator span').text((($(this).scrollTop() / length) * 100).toFixed(0));
     });
   }
+  $(document).on('mouseover', 'article', function() {
+    return transition.article(this, 'focusIn');
+  });
+  return $(document).on('mouseout', 'article', function() {
+    return transition.article(this, 'focusOut');
+  });
 })(jQuery);
 });
 
@@ -31941,6 +31954,55 @@ module.exports = {
         });
         break;
     }
+  },
+  page: function(direction, duration) {
+    switch (direction) {
+      case 'up':
+        return TweenMax.staggerFromTo('article', 0.5, {
+          y: 50,
+          opacity: 0
+        }, {
+          y: 0,
+          opacity: 1
+        }, 0.15);
+      case 'down':
+        return TweenMax.staggerFromTo('article', 0.5, {
+          y: 0,
+          opacity: 1
+        }, {
+          y: 50,
+          opacity: 0,
+          reverse: true
+        }, 0.05);
+      case 'leftOut':
+        return TweenMax.staggerFromTo('article', 0.5, {
+          x: 0,
+          opacity: 1
+        }, {
+          x: -50,
+          opacity: 0
+        }, 0.05);
+      case 'leftIn':
+        return TweenMax.staggerFromTo('article', 0.5, {
+          x: 50,
+          opacity: 0
+        }, {
+          x: 0,
+          opacity: 1
+        }, 0.05);
+    }
+  },
+  article: function(el, interaction) {
+    switch (interaction) {
+      case 'focusIn':
+        return TweenMax.staggerTo($('.animate', el), 0.5, {
+          x: 50
+        }, 0.025);
+      case 'focusOut':
+        return TweenMax.staggerTo($('.animate', el), 0.5, {
+          x: 0
+        }, 0.025);
+    }
   }
 };
 });
@@ -32023,7 +32085,7 @@ window.jQuery = require("jquery");
         });
     }
   };
-  var port = ar.port || 9485;
+  var port = ar.port || 9486;
   var host = br.server || window.location.hostname || 'localhost';
 
   var connect = function(){

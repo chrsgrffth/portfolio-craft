@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 body,
 html {
   @extend .antialiased;
@@ -12,8 +16,35 @@ a {
   letter-spacing: 0.035em;
 }
 
-a[class*='bb'] {
-  transition: line-height 0.09s cubic-bezier(.17,.67,.72,1.12);
+// a[class*='bb'] {
+//   transition: line-height 0.09s cubic-bezier(.17,.67,.72,1.12);
 
-  &:hover { line-height: 2; }
+//   &:hover { line-height: 2; }
+// }
+
+a[class*='bb'] {
+  @extend .d-inline-block;
+  @extend .relative;
+
+  text-decoration: none;
+
+  &::after {
+    content: '';
+    position: absolute;
+
+    @extend .d-block;
+    @extend .wp-100;
+    @extend .bb-1;
+  }
+
+  &:hover {
+
+    &::after {
+      @extend .wp-0; 
+      @extend .d-none;
+    }
+    
+  }
+
 }
+

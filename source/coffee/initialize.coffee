@@ -14,25 +14,25 @@ scrolling = require('./modules/scrolling')
   $.ajaxPrefilter ( options, originalOptions, jqXHR ) ->
     options.async = true
 
-
   smoothstate = $main.smoothState
     debug: true
     loadingClass: 'is-loading' # Show loader when is loading.
     blacklist: '.blacklist' # Use this class on elements to prevent using smoothstate.
     scroll: false
 
-  #   onStart:
-  #     duration: 500
-  #     render: () ->
-  #       transition.caseStudy('in')
-
+    onStart:
+      duration: 500
+      render: ->
+        transition.page('leftOut', 500)
 
     onReady:
-      duration: 0 # Duration of the in animation.
-      render: ($main, $newContent) ->
+      duration: 500 # Duration of the in animation.
 
+      render: ($main, $newContent) ->
         # Load the new content to the container.
         $main.html($newContent)
+
+        transition.page('leftIn', 500)
 
 
   #   onAfter: ($main, $newContent) ->
@@ -42,8 +42,13 @@ scrolling = require('./modules/scrolling')
     length = $(document).height()-$(window).height()
 
     $(window).on 'scroll', ->
-
       $('#reading-indicator span').text (($(this).scrollTop()/length)*100).toFixed(0)
 
+
+  $(document).on 'mouseover', 'article', ->
+    transition.article(@, 'focusIn')
+
+  $(document).on 'mouseout', 'article', ->
+    transition.article(@, 'focusOut')
 
 ) jQuery

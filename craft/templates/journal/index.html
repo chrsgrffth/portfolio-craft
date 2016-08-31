@@ -2,8 +2,10 @@
 
 {% block content %}
   
-  <section class="container pt-5">
-    <div class="row mln-1">
+  <section class="container">
+    
+    {#
+    <div class="row mln-1 mb-5">
       <div class="col-md-6 push-md-2">
         <a href="#" class="caps tn-2 px-1 c-black">Everything</a>
         <a href="#" class="caps tn-2 px-1 cg-4">Code</a>
@@ -12,10 +14,11 @@
         <a href="#" class="caps tn-2 px-1 cg-4">Thoughts</a>
         <a href="#" class="caps tn-2 px-1 cg-4">Life</a>
       </div>
-      </div>
-    </section>
+    </div>
+    #}
+  </section>
 
-  <main class="pt-5 pb-5">
+  <section class="pb-5">
 
     <div class="container">
 
@@ -44,6 +47,6 @@
       {% endfor %}
 
     </div>
-  </main>
+  </section>
 
 {% endblock %}

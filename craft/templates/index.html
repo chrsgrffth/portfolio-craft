@@ -2,32 +2,33 @@
 
 {% block content %}
 
-	<main class="pt-5 pb-6">
-    <div class="container">
+	
+  <article class="container pb-5">
 
-      {% for block in entry.pageBuilder %}
+    {% for block in entry.pageBuilder %}
 
-        {% if block.type == "qaBlock" %}
-          <div class="row mb-3 mb-md-4">
-            <div class="col-10 col-md-6 push-2">
-              <h2 class="display caps tn-2 cg-5 mb-2 antialiased">{{ block.question }}</h2>
-              <div class="wysiwyg">
-                {{ block.response }}
-              </div>
+      {% if block.type == "qaBlock" %}
+        <div class="row mb-3 mb-md-4">
+          <div class="col-10 col-md-6 push-2">
+            <h2 class="display caps tn-2 cg-5 mb-2 antialiased">{{ block.question }}</h2>
+            <div class="wysiwyg">
+              {{ block.response }}
             </div>
           </div>
-        {% endif %}
-
-      {% endfor %}
-
-      <div class="row">
-        <div class="col-10 col-md-6 push-2">
-          <a href="/about" class="caps display tn-2 c-black bb-1">More About Me</a>
         </div>
-      </div>
+      {% endif %}
 
+    {% endfor %}
+
+    {# 
+    <div class="row">
+      <div class="col-10 col-md-6 push-2">
+        <a href="/about" class="caps display tn-2 c-black bb-1">More About Me</a>
+      </div>
     </div>
-  </main>
+    #}
+
+  </article>
 
   {% set linkTo = craft.entries.section('works').first() %}
   {% include '_shared/footerLink' %}

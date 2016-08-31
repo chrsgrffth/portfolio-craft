@@ -2,6 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
 <head>
   <meta charset="utf-8" />
+  <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+
   <title>{% if title is defined %}{{ title }} - {% endif %}{{ siteName }}</title>
   <link rel="home" href="{{ siteUrl }}" />
 
@@ -28,15 +30,13 @@
           <div class="col-8">
             <a href="/" class="d-block display caps tn-1 c-black">Christian Griffith</a>
           </div>
-          <div class="col-2 relative">
-            {# <p class="absolute-top-left mtn-3 display tn-3 cg-5">—</p> #}
+          <div class="d-none d-md-block col-2 relative">
             <a href="/work" class="d-block display caps tn-2 cg-4 mb-1">Work</a>
             <a href="/journal" class="d-block display caps tn-2 cg-4 mb-1">Journal</a>
-            <a href="/about" class="d-block display caps tn-2 cg-4 mb-1">About</a>
+            {# <a href="/about" class="d-block display caps tn-2 cg-4 mb-1">About</a> #}
             <a href="/contact" class="d-block display caps tn-2 cg-4">Contact</a>
           </div>
-          <div class="col-2 relative">
-            {# <p class="absolute-top-left mtn-3 display tn-3 cg-5">—</p> #}
+          <div class="d-none d-md-block col-2 relative">
             {% for network in siteGlobals.networks %}
               <a href="{{ network.link }}" class="d-block display caps tn-2 cg-4 mb-1">{{ network.name }}</a>
             {% endfor %}
@@ -46,11 +46,28 @@
       </div>
     </header>
 
-    {% block content %}
-      <p>If you see me, you haven’t set your <code>{% verbatim %}{% block content %}…{% endblock %}{% endverbatim %}</code> yet.</p>
-      <p>See Twig’s <a href="http://twig.sensiolabs.org/doc/templates.html#template-inheritance">Template Inheritance</a> documentation for an explanation.</p>
-    {% endblock %}
+    <main class="pt-5">
+      {% block content %}
+        <p>If you see me, you haven’t set your <code>{% verbatim %}{% block content %}…{% endblock %}{% endverbatim %}</code> yet.</p>
+        <p>See Twig’s <a href="http://twig.sensiolabs.org/doc/templates.html#template-inheritance">Template Inheritance</a> documentation for an explanation.</p>
+      {% endblock %}
+    </main>
 
+    <footer class="d-md-none pb-5 px-2">
+      <nav>
+        <div class="mln-1">
+          <a href="/work" class="d-inline-block px-1 display caps tn-2 cg-1 mb-1">Work</a>
+          <a href="/journal" class="d-inline-block px-1 display caps tn-2 cg-1 mb-1">Journal</a>
+          <a href="/about" class="d-inline-block px-1 display caps tn-2 cg-1 mb-1">About</a>
+          <a href="/contact" class="d-inline-block px-1 display caps tn-2 cg-1">Contact</a>
+        </div>
+        <div class="mln-1">
+          {% for network in siteGlobals.networks %}
+            <a href="{{ network.link }}" class="d-inline-block px-1 display caps tn-2 cg-4 mb-1">{{ network.name }}</a>
+          {% endfor %}
+        </div>
+      </nav>
+    </footer>
   </div>
 
   {% includeJsFile '/js/main.js' %}

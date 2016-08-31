@@ -2,19 +2,19 @@
 
 {% block content %}
     
-  <main class="py-5">
+  <main class="pb-5">
     <div class="container">
 
       {% for entry in craft.entries.section('works') %}
-        <article class="row mb-5">
+        <article class="row py-3">
           <a href="{{ entry.uri }}" class="d-block">
           <div class="flex items-baseline">
             <div class="col-1">
               <p class="display tn-2 cg-5">0{{ loop.index }}</p>
             </div>
             <div class="col-10 col-md-6 push-1">
-              <h1 class="display caps t-1 mb-1 c-black">{{ entry.title }}</h1>
-              <h2 class="display caps tn-2 c-black a-3">{% for type in entry.projectTypes %}{{ type.title }}{% if not loop.last %}, {% endif %}{% endfor %}</h2>
+              <h1 class="animate display caps t-1 mb-1 c-black">{{ entry.title }}</h1>
+              <h2 class="animate display caps tn-2 c-black a-3">{% for type in entry.projectTypes %}{{ type.title }}{% if not loop.last %}, {% endif %}{% endfor %}</h2>
             </div>
           </div>
           </a>
