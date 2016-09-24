@@ -5,17 +5,17 @@
   {% set position = 0 %}
 {% endif %}
 
-<article class="panel-link relative bt-8">
-  <a href="{{ linkTo.uri }}" class="d-block pt-4 pb-5">
+<article class="panel-link relative">
+  <a href="/{{ linkTo.uri }}" class="d-block pt-4 pb-5" data-transition="up">
     <div class="container">
       <div class="col-10 push-1 push-md-2" style="backface-visibility: hidden;">
-        <p class="display tn-2 c-black a-2 mb-3">0{{ position }}</p>
-        <h1 class="display t-1 caps c-black mb-1">{{ linkTo.title }}</h1>
-        <h2 class="display caps tn-2 c-black a-3">{% for type in linkTo.projectTypes %}{{ type.title }}{% if not loop.last %}, {% endif %}{% endfor %}</h2>
+        <p class="animate display tn-2 c-black a-2 mb-3">0{{ position }}</p>
+        <h1 class="animate display t-1 caps c-black mb-1">{{ linkTo.title }}</h1>
+        <h2 class="animate display caps tn-2 c-black a-3">{% for type in linkTo.projectTypes %}{{ type.title }}{% if not loop.last %}, {% endif %}{% endfor %}</h2>
       </div>
     </div>
   </a>
   <div class="panel-cover absolute-top-left wp-100 hp-100 zn-1" style="overflow: hidden;">
-    <div class="wp-100 hp-100 y-100" style="background-color: #47C2EE;"></div>
+    <div class="wp-100 hp-100 y-100" style="background-color: {{ linkTo.themeColor }};"></div>
   </div>
 </article>

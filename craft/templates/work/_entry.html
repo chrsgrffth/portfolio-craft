@@ -2,7 +2,7 @@
 
 {% block content %}
 
-  <article class="pt-5 pb-5">
+  <main class="pt-5 pb-5">
     <section class="container mb-5 px-2">
       <div class="flex-md items-baseline">
         <div class="col-md-2">
@@ -68,7 +68,7 @@
         <a href="#" class="caps tn-2 mr-1 c-black">LinkedIn</a>
       </div>
     </section>
-  </article>
+  </main>
 
   {% set params = craft.entries.section('works') %}
   {% set linkTo = entry.getNext(params) %}

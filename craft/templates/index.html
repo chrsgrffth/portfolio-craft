@@ -1,9 +1,9 @@
 {% extends "_layouts/default" %}
+{% redirect "work" %}
 
 {% block content %}
 
-	
-  <article class="container pb-5">
+  <main class="container pb-5">
 
     {% for block in entry.pageBuilder %}
 
@@ -28,7 +28,7 @@
     </div>
     #}
 
-  </article>
+  </main>
 
   {% set linkTo = craft.entries.section('works').first() %}
   {% include '_shared/footerLink' %}

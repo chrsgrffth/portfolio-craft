@@ -154,8 +154,94 @@ require.register("brunch/node_modules/process/browser.js", function(exports, req
   require = __makeRelativeRequire(require, {}, "brunch/node_modules/process");
   (function() {
     // shim for using process in browser
-
 var process = module.exports = {};
+
+// cached from whatever global is present so that test runners that stub it
+// don't break things.  But we need to wrap it in a try catch in case it is
+// wrapped in strict mode code which doesn't define any globals.  It's inside a
+// function because try/catches deoptimize in certain engines.
+
+var cachedSetTimeout;
+var cachedClearTimeout;
+
+function defaultSetTimout() {
+    throw new Error('setTimeout has not been defined');
+}
+function defaultClearTimeout () {
+    throw new Error('clearTimeout has not been defined');
+}
+(function () {
+    try {
+        if (typeof setTimeout === 'function') {
+            cachedSetTimeout = setTimeout;
+        } else {
+            cachedSetTimeout = defaultSetTimout;
+        }
+    } catch (e) {
+        cachedSetTimeout = defaultSetTimout;
+    }
+    try {
+        if (typeof clearTimeout === 'function') {
+            cachedClearTimeout = clearTimeout;
+        } else {
+            cachedClearTimeout = defaultClearTimeout;
+        }
+    } catch (e) {
+        cachedClearTimeout = defaultClearTimeout;
+    }
+} ())
+function runTimeout(fun) {
+    if (cachedSetTimeout === setTimeout) {
+        //normal enviroments in sane situations
+        return setTimeout(fun, 0);
+    }
+    // if setTimeout wasn't available but was latter defined
+    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
+        cachedSetTimeout = setTimeout;
+        return setTimeout(fun, 0);
+    }
+    try {
+        // when when somebody has screwed with setTimeout but no I.E. maddness
+        return cachedSetTimeout(fun, 0);
+    } catch(e){
+        try {
+            // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
+            return cachedSetTimeout.call(null, fun, 0);
+        } catch(e){
+            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
+            return cachedSetTimeout.call(this, fun, 0);
+        }
+    }
+
+
+}
+function runClearTimeout(marker) {
+    if (cachedClearTimeout === clearTimeout) {
+        //normal enviroments in sane situations
+        return clearTimeout(marker);
+    }
+    // if clearTimeout wasn't available but was latter defined
+    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
+        cachedClearTimeout = clearTimeout;
+        return clearTimeout(marker);
+    }
+    try {
+        // when when somebody has screwed with setTimeout but no I.E. maddness
+        return cachedClearTimeout(marker);
+    } catch (e){
+        try {
+            // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
+            return cachedClearTimeout.call(null, marker);
+        } catch (e){
+            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
+            // Some versions of I.E. have different rules for clearTimeout vs setTimeout
+            return cachedClearTimeout.call(this, marker);
+        }
+    }
+
+
+
+}
 var queue = [];
 var draining = false;
 var currentQueue;
@@ -180,7 +266,7 @@ function drainQueue() {
     if (draining) {
         return;
     }
-    var timeout = setTimeout(cleanUpNextTick);
+    var timeout = runTimeout(cleanUpNextTick);
     draining = true;
 
     var len = queue.length;
@@ -197,7 +283,7 @@ function drainQueue() {
     }
     currentQueue = null;
     draining = false;
-    clearTimeout(timeout);
+    runClearTimeout(timeout);
 }
 
 process.nextTick = function (fun) {
@@ -209,7 +295,7 @@ process.nextTick = function (fun) {
     }
     queue.push(new Item(fun, args));
     if (queue.length === 1 && !draining) {
-        setTimeout(drainQueue, 0);
+        runTimeout(drainQueue);
     }
 };
 
@@ -31816,7 +31902,7 @@ module.exports = {
 });
 
 ;require.register("source/coffee/initialize.coffee", function(exports, require, module) {
-var app, scrolling, smoothstate, transition;
+var app, pageTransitionIn, pageTransitionOut, scrolling, smoothstate, transition;
 
 smoothstate = require('smoothstate');
 
@@ -31825,6 +31911,10 @@ app = require('./app');
 transition = require('./modules/transition');
 
 scrolling = require('./modules/scrolling');
+
+pageTransitionOut = 'upOut';
+
+pageTransitionIn = 'upIn';
 
 (function($) {
   var $main, length;
@@ -31841,14 +31931,14 @@ scrolling = require('./modules/scrolling');
     onStart: {
       duration: 500,
       render: function() {
-        return transition.page('leftOut', 500);
+        return transition.page(pageTransitionOut, 500);
       }
     },
     onReady: {
       duration: 500,
       render: function($main, $newContent) {
         $main.html($newContent);
-        return transition.page('leftIn', 500);
+        return transition.page(pageTransitionIn, 500);
       }
     }
   });
@@ -31858,6 +31948,13 @@ scrolling = require('./modules/scrolling');
       return $('#reading-indicator span').text((($(this).scrollTop() / length) * 100).toFixed(0));
     });
   }
+  $(document).on('click', '#global-header a', function(e) {
+    var linkTo;
+    e.preventDefault();
+    smoothstate = $('#smoothstate').smoothState().data('smoothState');
+    linkTo = $(this).attr('href');
+    return smoothstate.load(linkTo);
+  });
   $(document).on('mouseover', 'article', function() {
     return transition.article(this, 'focusIn');
   });
@@ -31881,50 +31978,15 @@ TweenMax = require('gsap/src/uncompressed/TweenMax');
 module.exports = {
   controller: null,
   init: function() {
-    var headerTween, sceneTween;
+    var headerTween;
     this.controller = new ScrollMagic.Controller();
     headerTween = TweenMax.to('#global-header', 1, {
-      y: '-100%',
-      scale: 0.9,
       opacity: 0
     });
-    sceneTween = TweenMax.to('#masthead', 1, {
-      y: '-150%'
-    });
-    new ScrollMagic.Scene({
+    return new ScrollMagic.Scene({
       duration: $(window).height(),
       triggerHook: 0
     }).setTween(headerTween).addTo(this.controller);
-    new ScrollMagic.Scene({
-      duration: $(document).height(),
-      triggerHook: 0
-    }).setTween(sceneTween).addTo(this.controller);
-    $(document).on('mouseenter', '.panel-link', function() {
-      var index;
-      index = $(this).index() + 1;
-      TweenMax.to(".panel-link .panel-cover > div", 0.2, {
-        y: '0%'
-      });
-      TweenMax.staggerTo(".panel-link h1, .panel-link h2, .panel-link p", 0.2, {
-        y: -30
-      }, 0.025);
-      return TweenMax.to(".panel-link h1", 0.2, {
-        color: '#fff'
-      });
-    });
-    return $(document).on('mouseleave', '.panel-link', (function(_this) {
-      return function() {
-        TweenMax.to(".panel-link .panel-cover > div", 0.2, {
-          y: '100%'
-        });
-        TweenMax.staggerTo(".panel-link h1, .panel-link h2, .panel-link p", 0.2, {
-          y: 0
-        }, 0.025);
-        return TweenMax.to(".panel-link h1", 0.2, {
-          color: ''
-        });
-      };
-    })(this));
   }
 };
 });
@@ -31939,80 +32001,96 @@ TweenMax = require('gsap/src/uncompressed/TweenMax');
 ScrollTo = require('gsap/src/uncompressed/plugins/ScrollToPlugin');
 
 module.exports = {
-  caseStudy: function(direction) {
-    var windowHeight;
-    switch (direction) {
-      case 'in':
-        windowHeight = $(window).height();
-        $('.panel-cover').css('height', windowHeight);
-        TweenMax.to('main', 0.5, {
-          y: -windowHeight,
-          opacity: 0
-        });
-        TweenMax.to('.panel-cover', 0.5, {
-          y: -windowHeight
-        });
-        break;
-    }
-  },
   page: function(direction, duration) {
     switch (direction) {
       case 'up':
-        return TweenMax.staggerFromTo('article', 0.5, {
+        TweenMax.staggerFromTo('article, main', 0.5, {
           y: 50,
           opacity: 0
         }, {
           y: 0,
           opacity: 1
         }, 0.15);
+        break;
       case 'down':
-        return TweenMax.staggerFromTo('article', 0.5, {
-          y: 0,
-          opacity: 1
+        TweenMax.staggerFromTo('article, main', 0.5, {
+          y: 0
         }, {
           y: 50,
           opacity: 0,
           reverse: true
         }, 0.05);
+        break;
       case 'leftOut':
-        return TweenMax.staggerFromTo('article', 0.5, {
-          x: 0,
-          opacity: 1
+        TweenMax.staggerFromTo('article, main', 0.5, {
+          x: 0
         }, {
           x: -50,
           opacity: 0
         }, 0.05);
+        break;
       case 'leftIn':
-        return TweenMax.staggerFromTo('article', 0.5, {
+        TweenMax.staggerFromTo('article, main', 0.5, {
           x: 50,
           opacity: 0
         }, {
           x: 0,
           opacity: 1
         }, 0.05);
+        break;
+      case 'upOut':
+        TweenMax.staggerFromTo('article, main', 0.5, {
+          y: 0
+        }, {
+          y: -50,
+          opacity: 0
+        }, 0.05);
+        break;
+      case 'upIn':
+        TweenMax.staggerFromTo('article, main', 0.5, {
+          y: 50,
+          opacity: 0
+        }, {
+          y: 0,
+          opacity: 1
+        }, 0.05);
+    }
+    if ($(window).scrollTop() > $('#global-header').outerHeight()) {
+      return TweenMax.fromTo('#global-header', 0.5, {
+        opacity: 0
+      }, {
+        opacity: 1,
+        delay: 0.5
+      });
     }
   },
   article: function(el, interaction) {
     switch (interaction) {
       case 'focusIn':
-        return TweenMax.staggerTo($('.animate', el), 0.5, {
-          x: 50
+        TweenMax.staggerTo($('.animate', el), 0.5, {
+          y: -15
         }, 0.025);
+        return TweenMax.to($('article, main').not(el), 0.25, {
+          opacity: 0.25
+        });
       case 'focusOut':
-        return TweenMax.staggerTo($('.animate', el), 0.5, {
-          x: 0
+        TweenMax.staggerTo($('.animate', el), 0.5, {
+          y: 0
         }, 0.025);
+        return TweenMax.to($('article, main').not(el), 0.25, {
+          opacity: 1
+        });
     }
   }
 };
 });
 
-;require.alias("jquery/dist/jquery.js", "jquery");
-require.alias("smoothstate/src/jquery.smoothState.js", "smoothstate");
-require.alias("vue/dist/vue.common.js", "vue");
-require.alias("gsap/src/uncompressed/TweenMax.js", "gsap");
+;require.alias("gsap/src/uncompressed/TweenMax.js", "gsap");
+require.alias("jquery/dist/jquery.js", "jquery");
+require.alias("brunch/node_modules/process/browser.js", "process");
 require.alias("scrollmagic/scrollmagic/uncompressed/ScrollMagic.js", "scrollmagic");
-require.alias("brunch/node_modules/process/browser.js", "process");process = require('process');require.register("___globals___", function(exports, require, module) {
+require.alias("smoothstate/src/jquery.smoothState.js", "smoothstate");
+require.alias("vue/dist/vue.common.js", "vue");process = require('process');require.register("___globals___", function(exports, require, module) {
   
 
 // Auto-loaded modules from config.npm.globals.
@@ -32085,7 +32163,7 @@ window.jQuery = require("jquery");
         });
     }
   };
-  var port = ar.port || 9486;
+  var port = ar.port || 9485;
   var host = br.server || window.location.hostname || 'localhost';
 
   var connect = function(){

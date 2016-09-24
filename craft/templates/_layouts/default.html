@@ -21,37 +21,36 @@
   {# <div class="fixed-left-top px-2 py-2">
     <p class="caps display tn-2 c-black bb-1">Back to Top</p>
   </div> #}
+  <header id="global-header" class="p-1 wp-100">
+    <div class="pt-4 pb-5 px-1">
+    <div class="container">
+      <nav class="flex flex-start">
+        <div class="col-8">
+          <a href="/" data-transition="up" class="d-block display caps tn-1 c-black">Christian Griffith</a>
+        </div>
+        <div class="d-none d-md-block col-2 relative">
+          {# <a href="/work" class="d-block display caps tn-2 cg-4 mb-1">Work</a> #}
+          {# <a href="/journal" class="d-block display caps tn-2 cg-4 mb-1">Journal</a> #}
+          {# <a href="/about" class="d-block display caps tn-2 cg-4 mb-1">About</a> #}
+          {# <a href="/contact" class="d-block display caps tn-2 cg-4">Contact</a> #}
+        </div>
+        <div class="d-none d-md-block col-2 relative">
+          {% for network in siteGlobals.networks %}
+            <a href="{{ network.link }}" class="d-block display caps tn-2 cg-4 mb-1">{{ network.name }}</a>
+          {% endfor %}
+        </div>
+      </nav>
+    </div>
+    </div>
+  </header>
 
   <div id="smoothstate" class="hp-100">
-    <header id="global-header" class="p-1">
-      <div class="pt-4 pb-5 px-1">
-      <div class="container">
-        <nav class="flex flex-start">
-          <div class="col-8">
-            <a href="/" class="d-block display caps tn-1 c-black">Christian Griffith</a>
-          </div>
-          <div class="d-none d-md-block col-2 relative">
-            <a href="/work" class="d-block display caps tn-2 cg-4 mb-1">Work</a>
-            <a href="/journal" class="d-block display caps tn-2 cg-4 mb-1">Journal</a>
-            {# <a href="/about" class="d-block display caps tn-2 cg-4 mb-1">About</a> #}
-            <a href="/contact" class="d-block display caps tn-2 cg-4">Contact</a>
-          </div>
-          <div class="d-none d-md-block col-2 relative">
-            {% for network in siteGlobals.networks %}
-              <a href="{{ network.link }}" class="d-block display caps tn-2 cg-4 mb-1">{{ network.name }}</a>
-            {% endfor %}
-          </div>
-        </nav>
-      </div>
-      </div>
-    </header>
-
-    <main class="pt-5">
+    <div class="pt-5">
       {% block content %}
         <p>If you see me, you haven’t set your <code>{% verbatim %}{% block content %}…{% endblock %}{% endverbatim %}</code> yet.</p>
         <p>See Twig’s <a href="http://twig.sensiolabs.org/doc/templates.html#template-inheritance">Template Inheritance</a> documentation for an explanation.</p>
       {% endblock %}
-    </main>
+    </div>
 
     <footer class="d-md-none pb-5 px-2">
       <nav>

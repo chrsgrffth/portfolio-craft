@@ -4,6 +4,9 @@ app = require('./app')
 transition = require('./modules/transition')
 scrolling = require('./modules/scrolling')
 
+pageTransitionOut = 'upOut'
+pageTransitionIn = 'upIn'
+
 (($) ->
 
   app.init()
@@ -22,8 +25,8 @@ scrolling = require('./modules/scrolling')
 
     onStart:
       duration: 500
-      render: ->
-        transition.page('leftOut', 500)
+      render: () ->
+        transition.page(pageTransitionOut, 500)
 
     onReady:
       duration: 500 # Duration of the in animation.
@@ -31,12 +34,11 @@ scrolling = require('./modules/scrolling')
       render: ($main, $newContent) ->
         # Load the new content to the container.
         $main.html($newContent)
+        transition.page(pageTransitionIn, 500)
 
-        transition.page('leftIn', 500)
+    # onAfter: ($main) ->
+    #   scrolling.init()
 
-
-  #   onAfter: ($main, $newContent) ->
-  #     scrolling.init()
 
   if $('#reading-indicator').length > 0
     length = $(document).height()-$(window).height()
@@ -45,10 +47,20 @@ scrolling = require('./modules/scrolling')
       $('#reading-indicator span').text (($(this).scrollTop()/length)*100).toFixed(0)
 
 
+  $(document).on 'click', '#global-header a', (e) ->
+    e.preventDefault()
+    smoothstate = $('#smoothstate').smoothState().data('smoothState')
+
+    linkTo = $(this).attr('href')
+    smoothstate.load(linkTo)
+
+
+  # Events.
   $(document).on 'mouseover', 'article', ->
     transition.article(@, 'focusIn')
 
   $(document).on 'mouseout', 'article', ->
     transition.article(@, 'focusOut')
+
 
 ) jQuery
