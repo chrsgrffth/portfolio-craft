@@ -1,6 +1,6 @@
 {% if entry.section.handle == 'works' %}
   {% set prevSibsCount = craft.entries.positionedBefore(entry).total() %}
-  {% set position = prevSibsCount + 1 %}
+  {% set position = prevSibsCount + 2 %}
 {% else %}
   {% set position = 0 %}
 {% endif %}
