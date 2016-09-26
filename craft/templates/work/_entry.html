@@ -25,15 +25,21 @@
     {% for block in entry.worksBuilder %}
 
       {% if block.type == "fullWidthMockup" %}
-        <section class="py-5 mb-6" style="background-color: {{ block.bgColor }};">
+        <section class="py-5 mb-5" style="background-color: {{ block.bgColor }};">
           <div class="container">
-            <img src="/{{ block.mockup[0].getUrl() }}" class="wp-100 shadow" />
+            {% if block.designType == 'mobile' %}
+              <div class="col-4 push-4">
+                <img src="/{{ block.mockup[0].getUrl() }}" class="wp-100 shadow" />
+              </div>
+            {% else %}
+              <img src="/{{ block.mockup[0].getUrl() }}" class="wp-100 shadow" />
+            {% endif %}
           </div>
         </section>
       {% endif %}
 
       {% if block.type == "fullWidthBrand" %}
-        <section class="py-6 mb-6 ta-center" style="background-color: {{ block.bgColor }};">
+        <section class="py-6 mb-5 ta-center" style="background-color: {{ block.bgColor }};">
           <div class="container" style="line-height: 0;">
             <img src="/{{ block.brandAsset[0].getUrl() }}" class="wp-40" />
           </div>
@@ -41,7 +47,7 @@
       {% endif %}
 
       {% if block.type == "contentBlock" %}
-        <section class="pb-5 px-2">
+        <section class="pb-4 mb-1 px-2">
           <div class="container">
             <div class="flex-md items-baseline">
               {% if block.heading %}
@@ -58,7 +64,7 @@
       {% endif %}
 
       {% if block.type == "designImages" %}
-        <section class="mb-5 px-5 {% if block.showBgColor %}py-5 cbgg-8{% else %}pb-5{% endif %}">
+        <section class="px-5 {% if block.showBgColor %}py-5 mb-5 cbgg-8{% else %}pb-5{% endif %}">
           <div class="flex-md items-center justify-center mln-{{ block.paddingIncrement }} mbn-{{ block.paddingIncrement }} {% if block.imageWidth %}flex-wrap{% endif %}">
             {% for image in block.images %}
               <div class="pl-{{ block.paddingIncrement }} mb-{{ block.paddingIncrement }}" {% if block.imageWidth %}style="width: {{ block.imageWidth }}%"{% endif %}>
@@ -73,8 +79,8 @@
     {% endfor %}
 
 
-    {#     
-    <section class="container pt-5 px-2">
+        
+    <section class="container px-2">
       <div class="col-md-2">
         <span class="caps tn-2 mr-2 cg-4">Share</span>
       </div>
@@ -84,7 +90,7 @@
         <a href="#" class="caps tn-2 mr-1 c-black">LinkedIn</a>
       </div>
     </section> 
-    #}
+   
 
   </main>
 
