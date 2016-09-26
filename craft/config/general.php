@@ -10,21 +10,15 @@
 return array(
 
   '.dev' => array(
-    'siteUrl' => 'http://chrisgriffith.dev'
+    'siteUrl' => 'http://craft.chrisgriffith.dev'
   ),
 
-  'preview.chrisgriffith.co' => array(
-    'siteUrl' => 'http://preview.chrisgriffith.dev'
-  ),
+  // 'herokuapp.com' => array(
+  //   'siteUrl' => 'http://preview.chrisgriffith.dev'
+  // ),
 
   'chrisgriffith.co' => array(
-    'siteUrl' => 'http://chrisgriffith.co',
-
-    # Production Database.
-    'server' => '159.203.200.98',
-    'database' => 'chrisg-production',
-    'user' => 'chrisg',
-    'password' => 'chr15g',
+    'siteUrl' => 'http://www.chrisgriffith.co',
   ),
 
 );
