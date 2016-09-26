@@ -48,11 +48,14 @@ pageTransitionIn = 'upIn'
 
 
   $(document).on 'click', '#global-header a', (e) ->
-    e.preventDefault()
-    smoothstate = $('#smoothstate').smoothState().data('smoothState')
+    $this = $(this)
 
-    linkTo = $(this).attr('href')
-    smoothstate.load(linkTo)
+    if $this.attr('class').indexOf('blacklist') == -1
+      e.preventDefault()
+
+      smoothstate = $('#smoothstate').smoothState().data('smoothState')
+      linkTo = $this.attr('href')
+      smoothstate.load(linkTo) 
 
 
   # Events.

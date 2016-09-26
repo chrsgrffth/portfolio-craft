@@ -24,22 +24,23 @@
   <header id="global-header" class="p-1 wp-100">
     <div class="pt-4 pb-5 px-1">
     <div class="container">
-      <nav class="flex flex-start">
+      <div class="flex flex-start">
         <div class="col-8">
           <a href="/" data-transition="up" class="d-block display caps tn-1 c-black">Christian Griffith</a>
         </div>
-        <div class="d-none d-md-block col-2 relative">
+        <nav class="d-none d-md-block col-2 relative">
           {# <a href="/work" class="d-block display caps tn-2 cg-4 mb-1">Work</a> #}
           {# <a href="/journal" class="d-block display caps tn-2 cg-4 mb-1">Journal</a> #}
           {# <a href="/about" class="d-block display caps tn-2 cg-4 mb-1">About</a> #}
           {# <a href="/contact" class="d-block display caps tn-2 cg-4">Contact</a> #}
-        </div>
-        <div class="d-none d-md-block col-2 relative">
+        </nav>
+        <nav class="blacklist d-none d-md-block col-2 relative">
           {% for network in siteGlobals.networks %}
-            <a href="{{ network.link }}" class="d-block display caps tn-2 cg-4 mb-1">{{ network.name }}</a>
+            <a href="{{ network.link }}" class="d-block blacklist display caps tn-2 cg-4 mb-1">{{ network.name }}</a>
           {% endfor %}
-        </div>
-      </nav>
+          <a href="mailto:chris@chrisgriffith.co" class="d-block blacklist display caps tn-2 cg-4 mb-1">Mail</a>
+        </nav>
+      </div>
     </div>
     </div>
   </header>
@@ -52,7 +53,7 @@
       {% endblock %}
     </div>
 
-    <footer class="d-md-none pb-5 px-2">
+    {# <footer class="d-md-none pb-5 px-2">
       <nav>
         <div class="mln-1">
           <a href="/work" class="d-inline-block px-1 display caps tn-2 cg-1 mb-1">Work</a>
@@ -64,9 +65,10 @@
           {% for network in siteGlobals.networks %}
             <a href="{{ network.link }}" class="d-inline-block px-1 display caps tn-2 cg-4 mb-1">{{ network.name }}</a>
           {% endfor %}
+          <a href="mailto:chris@chrisgriffith.co" class="d-inline-block px-1 display caps tn-2 cg-4 mb-1">Mail</a>
         </div>
       </nav>
-    </footer>
+    </footer> #}
   </div>
 
   {% includeJsFile '/js/main.js' %}

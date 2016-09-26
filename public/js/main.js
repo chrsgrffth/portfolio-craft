@@ -31949,11 +31949,14 @@ pageTransitionIn = 'upIn';
     });
   }
   $(document).on('click', '#global-header a', function(e) {
-    var linkTo;
-    e.preventDefault();
-    smoothstate = $('#smoothstate').smoothState().data('smoothState');
-    linkTo = $(this).attr('href');
-    return smoothstate.load(linkTo);
+    var $this, linkTo;
+    $this = $(this);
+    if ($this.attr('class').indexOf('blacklist') === -1) {
+      e.preventDefault();
+      smoothstate = $('#smoothstate').smoothState().data('smoothState');
+      linkTo = $this.attr('href');
+      return smoothstate.load(linkTo);
+    }
   });
   $(document).on('mouseover', 'article', function() {
     return transition.article(this, 'focusIn');
