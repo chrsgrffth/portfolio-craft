@@ -6,6 +6,7 @@
 
   <title>{% if title is defined %}{{ title }} - {% endif %}{{ siteName }}</title>
   <link rel="home" href="{{ siteUrl }}" />
+  <link rel="shortcut icon" href="{{ siteUrl }}/favicon.ico">
 
   {% hook 'seomaticRender' %}
 
@@ -72,7 +73,9 @@
   </div>
 
   {% includeJsFile '/js/main.js' %}
-  {% includeJs "require('source/coffee/initialize');" %}
+  {% if craft.config.devMode %}
+    {% includeJs "require('source/coffee/initialize');" %}
+  {% endif %}
 
 </body>
 </html>

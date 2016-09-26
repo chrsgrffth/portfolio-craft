@@ -10,6 +10,7 @@
 return array(
 
   '.dev' => array(
+    'devMode' => true,
     'siteUrl' => 'http://craft.chrisgriffith.dev'
   ),
 
@@ -18,6 +19,7 @@ return array(
   // ),
 
   '.co' => array(
+    'devMode' => false,
     'siteUrl' => 'http://www.chrisgriffith.co',
   ),
 
