@@ -14,10 +14,6 @@ return array(
     'siteUrl' => 'http://craft.chrisgriffith.dev'
   ),
 
-  // 'herokuapp.com' => array(
-  //   'siteUrl' => 'http://preview.chrisgriffith.dev'
-  // ),
-
   '.co' => array(
     'devMode' => false,
     'siteUrl' => 'http://www.chrisgriffith.co',

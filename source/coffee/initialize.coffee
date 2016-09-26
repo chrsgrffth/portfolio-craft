@@ -21,15 +21,15 @@ pageTransitionIn = 'upIn'
     debug: true
     loadingClass: 'is-loading' # Show loader when is loading.
     blacklist: '.blacklist' # Use this class on elements to prevent using smoothstate.
-    scroll: false
+    cacheLength: 2
 
     onStart:
-      duration: 500
+      duration: 550
       render: () ->
         transition.page(pageTransitionOut, 500)
 
     onReady:
-      duration: 500 # Duration of the in animation.
+      duration: 550 # Duration of the in animation.
 
       render: ($main, $newContent) ->
         # Load the new content to the container.

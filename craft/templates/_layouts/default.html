@@ -73,9 +73,7 @@
   </div>
 
   {% includeJsFile '/js/main.js' %}
-  {% if craft.config.devMode %}
-    {% includeJs "require('source/coffee/initialize');" %}
-  {% endif %}
+  {% includeJs "require('source/coffee/initialize');" %}
 
 </body>
 </html>
