@@ -17,7 +17,7 @@ return array(
   //   'siteUrl' => 'http://preview.chrisgriffith.dev'
   // ),
 
-  'chrisgriffith.co' => array(
+  '.co' => array(
     'siteUrl' => 'http://www.chrisgriffith.co',
   ),
 

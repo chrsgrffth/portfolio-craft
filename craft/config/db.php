@@ -17,7 +17,7 @@ return array(
     'password' => '',
   ),
 
-  'herokuapp.com' => array (
+  '.co' => array (
     'server' => $dbparts['host'],
     'user' => $dbparts['user'],
     'password' => $dbparts['pass'],
