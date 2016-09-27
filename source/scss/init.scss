@@ -1,3 +1,19 @@
+// Google fonts.
+@import 'https://fonts.googleapis.com/css?family=Abel';
+
+// Simplon Norm Medium.
+@font-face {
+  font-family: 'Simplon Norm';
+  src: url('../fonts/SimplonNorm-Medium.eot');
+  src: url('../fonts/SimplonNorm-Medium.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/SimplonNorm-Medium.woff') format('woff'),
+    url('../fonts/SimplonNorm-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+
+// Design settings.
 @import 'settings';
 
 // Decent.
@@ -8,3 +24,4 @@
 @import 'global/base';
 @import 'global/wysiwyg';
 @import 'global/input';
+

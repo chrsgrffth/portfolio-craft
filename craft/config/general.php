@@ -10,13 +10,13 @@
 return array(
 
   '.dev' => array(
+    'siteUrl' => 'http://craft.chrisgriffith.dev',
     'devMode' => true,
-    'siteUrl' => 'http://craft.chrisgriffith.dev'
   ),
 
-  '.co' => array(
+  '.co' => array (
+    'siteUrl' => 'http://chrisgriffith.co',
     'devMode' => false,
-    'siteUrl' => 'http://www.chrisgriffith.co',
   ),
 
 );

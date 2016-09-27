@@ -9,7 +9,6 @@
   <link rel="shortcut icon" href="{{ siteUrl }}/favicon.ico">
 
   {% hook 'seomaticRender' %}
-
   {% includeCssFile "/css/main.css" %}
 </head>
 
@@ -29,13 +28,17 @@
         <div class="col-8">
           <a href="/" data-transition="up" class="d-block display caps tn-1 c-black">Christian Griffith</a>
         </div>
+        
+        {#         
         <nav class="d-none d-md-block col-2 relative">
-          {# <a href="/work" class="d-block display caps tn-2 cg-4 mb-1">Work</a> #}
-          {# <a href="/journal" class="d-block display caps tn-2 cg-4 mb-1">Journal</a> #}
-          {# <a href="/about" class="d-block display caps tn-2 cg-4 mb-1">About</a> #}
-          {# <a href="/contact" class="d-block display caps tn-2 cg-4">Contact</a> #}
-        </nav>
-        <nav class="blacklist d-none d-md-block col-2 relative">
+          <a href="/work" class="d-block display caps tn-2 cg-4 mb-1">Work</a>
+          <a href="/journal" class="d-block display caps tn-2 cg-4 mb-1">Journal</a>
+          <a href="/about" class="d-block display caps tn-2 cg-4 mb-1">About</a>
+          <a href="/contact" class="d-block display caps tn-2 cg-4">Contact</a>
+        </nav> 
+        #}
+
+        <nav class="blacklist d-none d-md-block col-2 relative item-right">
           {% for network in siteGlobals.networks %}
             <a href="{{ network.link }}" class="d-block blacklist display caps tn-2 cg-4 mb-1">{{ network.name }}</a>
           {% endfor %}

@@ -10,8 +10,8 @@ module.exports =
       when 'down' then TweenMax.staggerFromTo('article, main', 0.5, {y: 0}, {y: 50, opacity: 0, reverse: true}, 0.05)
       when 'leftOut' then TweenMax.staggerFromTo('article, main', 0.5, {x: 0}, {x: -50, opacity: 0}, 0.05)
       when 'leftIn' then TweenMax.staggerFromTo('article, main', 0.5, {x: 50, opacity: 0}, {x: 0, opacity: 1}, 0.05)
-      when 'upOut' then TweenMax.staggerFromTo('article, main', 0.5, {y: 0}, {y: -50, opacity: 0}, 0.05)
-      when 'upIn' then TweenMax.staggerFromTo('article, main', 0.5, {y: 50, opacity: 0}, {y: 0, opacity: 1}, 0.05)
+      when 'upOut' then TweenMax.staggerFromTo('article, main', 0.5, {y: 0}, {display: 'none', y: -50, opacity: 0}, 0.05)
+      when 'upIn' then TweenMax.staggerFromTo('article, main', 0.5, {display: 'none', y: 50, opacity: 0}, {display: '', y: 0, opacity: 1, delay: 0.1}, 0.05)
 
     if $(window).scrollTop() > $('#global-header').outerHeight()
       TweenMax.fromTo('#global-header', 0.5, {opacity: 0}, {opacity: 1, delay: 0.5})
