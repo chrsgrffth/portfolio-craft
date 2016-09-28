@@ -82,7 +82,7 @@
 
               {# The things we do for performance. #}
               {% for image in block.images %}
-                <div class="pl-{{ block.paddingIncrement }} mb-{{ block.paddingIncrement }} {% if block.columnCount != 'auto' %}col-{{ block.columnCount + 2 }} col-md-{{ block.columnCount }}{% else %}wp-100{% endif %}">
+                <div class="pl-{{ block.paddingIncrement }} mb-{{ block.paddingIncrement }} {% if block.columnCount != 'auto' %}col-md-{{ block.columnCount }}{% else %}wp-100{% endif %}">
                   {% if image.extension != 'svg' %}
                     <img srcset="
                       https://chrsgrffth.imgix.net/{{ image.getUrl() }}?s=aWmq9dElADZgQ0FA&w={{ imageWidth }} 1x,
