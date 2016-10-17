@@ -29,16 +29,24 @@
           <div class="container">
             {% if block.designType == 'mobile' %}
               <div class="col-4 push-4">
-                <img srcset="
+                {% if not craft.config.devMode %}
+                  <img srcset="
                   https://chrsgrffth.imgix.net/{{ block.mockup[0].getUrl() }}?s=aWmq9dElADZgQ0FA&w={{ 1070 // 3 }} 1x,
                   https://chrsgrffth.imgix.net/{{ block.mockup[0].getUrl() }}?s=aWmq9dElADZgQ0FA&w={{ 1070 // 3 }}&dpr=2 2x
                 " src="https://chrsgrffth.imgix.net/{{ block.mockup[0].getUrl() }}?s=aWmq9dElADZgQ0FA&w={{ 1070 // 3 }}" class="wp-100 shadow" />
+                {% else %}
+                  <img src="/{{ block.mockup[0].getUrl() }}" class="wp-100 shadow" />
+                {% endif %}
               </div>
             {% else %}
-              <img srcset="
+              {% if not craft.config.devMode %}
+                <img srcset="
                 https://chrsgrffth.imgix.net/{{ block.mockup[0].getUrl() }}?s=aWmq9dElADZgQ0FA&w=1070 1x,
                 https://chrsgrffth.imgix.net/{{ block.mockup[0].getUrl() }}?s=aWmq9dElADZgQ0FA&w=1070&dpr=2 2x
               " src="https://chrsgrffth.imgix.net/{{ block.mockup[0].getUrl() }}?s=aWmq9dElADZgQ0FA&w=1070" class="wp-100 shadow" />
+              {% else %}
+                <img src="/{{ block.mockup[0].getUrl() }}" class="wp-100 shadow" />
+              {% endif %}
             {% endif %}
           </div>
         </section>
@@ -84,10 +92,14 @@
               {% for image in block.images %}
                 <div class="pl-{{ block.paddingIncrement }} mb-{{ block.paddingIncrement }} {% if block.columnCount != 'auto' %}col-md-{{ block.columnCount }}{% else %}wp-100{% endif %}">
                   {% if image.extension != 'svg' %}
-                    <img srcset="
-                      https://chrsgrffth.imgix.net/{{ image.getUrl() }}?s=aWmq9dElADZgQ0FA&w={{ imageWidth }} 1x,
-                      https://chrsgrffth.imgix.net/{{ image.getUrl() }}?s=aWmq9dElADZgQ0FA&w={{ imageWidth }}&dpr=2 2x
-                    " src="https://chrsgrffth.imgix.net/{{ image.getUrl() }}?s=aWmq9dElADZgQ0FA&w={{ imageWidth }}" class="wp-100 {% if block.showShadow %}shadow{% endif %}" />
+                    {% if not craft.config.devMode %}
+                      <img srcset="
+                        https://chrsgrffth.imgix.net/{{ image.getUrl() }}?s=aWmq9dElADZgQ0FA&w={{ imageWidth }} 1x,
+                        https://chrsgrffth.imgix.net/{{ image.getUrl() }}?s=aWmq9dElADZgQ0FA&w={{ imageWidth }}&dpr=2 2x
+                      " src="https://chrsgrffth.imgix.net/{{ image.getUrl() }}?s=aWmq9dElADZgQ0FA&w={{ imageWidth }}" class="wp-100 {% if block.showShadow %}shadow{% endif %}" />
+                    {% else %}
+                      <img src="/{{ image.getUrl() }}" class="wp-100 {% if block.showShadow %}shadow{% endif %}" />
+                    {% endif %}
                   {% else %}
                     <img src="/{{ image.getUrl() }}" class="wp-100 {% if block.showShadow %}shadow{% endif %}" />
                   {% endif %}

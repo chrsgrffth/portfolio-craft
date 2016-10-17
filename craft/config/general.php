@@ -9,12 +9,16 @@
 
 return array(
 
+  '*' => array(
+    'omitScriptNameInUrls' => true,
+  ),
+
   '.dev' => array(
     'siteUrl' => 'http://craft.chrisgriffith.dev',
     'devMode' => true,
   ),
 
-  '.co' => array (
+  '.co' => array(
     'siteUrl' => 'http://chrisgriffith.co',
     'devMode' => false,
   ),
