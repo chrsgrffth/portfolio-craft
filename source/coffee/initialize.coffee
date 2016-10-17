@@ -19,6 +19,7 @@ pageTransitionIn = 'upIn'
 
   smoothstate = $main.smoothState
     debug: true
+    scroll: false
     loadingClass: 'is-loading' # Show loader when is loading.
     blacklist: '.blacklist' # Use this class on elements to prevent using smoothstate.
     cacheLength: 2
