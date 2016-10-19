@@ -1,7 +1,6 @@
 {% extends "_layouts/default" %}
 
 {% block content %}
-
   <main class="pb-5">
     <section class="container mb-5 px-2">
       <div class="flex-md items-baseline">
@@ -23,7 +22,6 @@
     </section>
 
     {% for block in entry.worksBuilder %}
-
       {% if block.type == "fullWidthMockup" %}
         <section class="px-2 py-5 mb-5" style="background-color: {{ block.bgColor }};">
           <div class="container">
@@ -108,23 +106,8 @@
             </div>
           </div>
         </section>
-
       {% endif %}
-
     {% endfor %}
-
-     {#    
-    <section class="container px-2">
-      <div class="col-md-2">
-        <span class="caps tn-2 mr-2 cg-4">Share</span>
-      </div>
-      <div class="col-md-6">
-        <a href="#" class="caps tn-2 mr-1 c-black">Facebook</a>
-        <a href="#" class="caps tn-2 mr-1 c-black">Twitter</a>
-        <a href="#" class="caps tn-2 mr-1 c-black">LinkedIn</a>
-      </div>
-    </section> 
-    #}
   </main>
 
   {% set params = craft.entries.section('works') %}
