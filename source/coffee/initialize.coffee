@@ -1,17 +1,13 @@
 smoothstate = require('smoothstate')
-
-app = require('./app')
 transition = require('./modules/transition')
-scrolling = require('./modules/scrolling')
 
+# Defaults.
 pageTransitionOut = 'upOut'
 pageTransitionIn = 'upIn'
 
 (($) ->
 
-  app.init()
-  # scrolling.init()
-
+  # Globals.
   $main = $('#smoothstate')
 
   $.ajaxPrefilter ( options, originalOptions, jqXHR ) ->
@@ -37,17 +33,8 @@ pageTransitionIn = 'upIn'
         $main.html($newContent)
         transition.page(pageTransitionIn, 500)
 
-    # onAfter: ($main) ->
-    #   scrolling.init()
 
-
-  if $('#reading-indicator').length > 0
-    length = $(document).height()-$(window).height()
-
-    $(window).on 'scroll', ->
-      $('#reading-indicator span').text (($(this).scrollTop()/length)*100).toFixed(0)
-
-
+  # Header links.
   $(document).on 'click', '#global-header a', (e) ->
     $this = $(this)
 
@@ -59,7 +46,7 @@ pageTransitionIn = 'upIn'
       smoothstate.load(linkTo) 
 
 
-  # Events.
+  # Mouseover events.
   $(document).on 'mouseover', 'article', ->
     transition.article(@, 'focusIn')
 

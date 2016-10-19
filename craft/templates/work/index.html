@@ -1,10 +1,8 @@
 {% extends "_layouts/default" %}
 
 {% block content %}
-    
   <section class="pb-5">
     <div class="container px-2">
-
       {% for entry in craft.entries.section('works') %}
         <article class="row py-3">
           <a href="{{ entry.uri }}" class="d-block">
@@ -20,8 +18,6 @@
           </a>
         </article>
       {% endfor %}
-
     </div>
   </section>
-
 {% endblock %}
