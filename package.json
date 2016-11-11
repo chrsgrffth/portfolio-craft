@@ -6,6 +6,9 @@
     "type": "git",
     "url": ""
   },
+  "engines": {
+    "node": "7.0.0"
+  },
   "scripts": {
     "start": "brunch watch --server",
     "build": "brunch build --production",
