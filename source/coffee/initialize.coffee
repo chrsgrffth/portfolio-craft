@@ -21,12 +21,12 @@ pageTransitionIn = 'upIn'
     cacheLength: 2
 
     onStart:
-      duration: 550
+      duration: 510
       render: () ->
         transition.page(pageTransitionOut, 500)
 
     onReady:
-      duration: 550 # Duration of the in animation.
+      duration: 510 # Duration of the in animation.
 
       render: ($main, $newContent) ->
         # Load the new content to the container.
