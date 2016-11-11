@@ -47,6 +47,8 @@
     })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
     ga('create', 'UA-45966824-1', 'auto');
+    ga('set', 'page', window.location.pathname)
+    ga('send', 'pageview')
   {% endset %}
 
   {% if not craft.config.devMode %}
