@@ -33,6 +33,13 @@ pageTransitionIn = 'upIn'
         $main.html($newContent)
         transition.page(pageTransitionIn, 500)
 
+    onAfter: ->
+      if ga?
+        ga('set', 'page', window.location.pathname)
+        ga('send', 'pageview')
+      else
+        return
+
 
   # Header links.
   $(document).on 'click', '#global-header a', (e) ->

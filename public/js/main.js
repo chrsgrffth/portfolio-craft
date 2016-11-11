@@ -18528,6 +18528,14 @@ pageTransitionIn = 'upIn';
         $main.html($newContent);
         return transition.page(pageTransitionIn, 500);
       }
+    },
+    onAfter: function() {
+      if (typeof ga !== "undefined" && ga !== null) {
+        ga('set', 'page', window.location.pathname);
+        return ga('send', 'pageview');
+      } else {
+
+      }
     }
   });
   $(document).on('click', '#global-header a', function(e) {
